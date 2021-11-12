@@ -180,22 +180,37 @@ class LanguageModelTest(TestCase):
         self.assertEquals(expected_object_name, str(language))
 
 
-# class BookInstanceModelTest(TestCase):
-#
-#     @classmethod
-#     def setUpTestData(cls):
-#         author = Author(first_name="Mazuki", last_name="Sekida", date_of_birth='1988-10-20')
-#         author.save()
-#         genre = Genre(name='ggg')
-#         genre.save()
-#         language = Language(name='Ukrainian')
-#         language.save()
-#         book = Book(title='test title', author=author, summary='test summary', isbn='4444444444444', language=language)
-#         book.save()
-#         # Set up non-modified objects used by all test methods
-#         BookInstance.objects.create(book=book, imprint='paper')
-#
-#     def test_book_label(self):
-#         bookinstance = BookInstance.objects.get(id=1)
-#         field_label = bookinstance._meta.get_field('book').verbose_name
-#         self.assertEquals(field_label, 'book')
+class BookInstanceModelTest(TestCase):
+
+    @classmethod
+    def setUpTestData(cls):
+        author = Author(first_name="Mazuki", last_name="Sekida", date_of_birth='1988-10-20')
+        author.save()
+        genre = Genre(name='ggg')
+        genre.save()
+        language = Language(name='Ukrainian')
+        language.save()
+        book = Book(title='test title', author=author, summary='test summary', isbn='4444444444444', language=language)
+        book.save()
+        # Set up non-modified objects used by all test methods
+        BookInstance.objects.create(id='fd07e07b-0328-4f9c-bc2e-f7f6a1d815b6', book=book, imprint='paper')
+
+    def test_book_label(self):
+        bookinstance = BookInstance.objects.get(id='fd07e07b-0328-4f9c-bc2e-f7f6a1d815b6')
+        field_label = bookinstance._meta.get_field('book').verbose_name
+        self.assertEquals(field_label, 'book')
+
+    def test_book_is_Book(self):
+        bookinstance = BookInstance.objects.get(id='fd07e07b-0328-4f9c-bc2e-f7f6a1d815b6')
+        field_book = bookinstance.book
+        self.assertEquals(type(field_book), Book)
+
+    def test_imprint_label(self):
+        bookinstance = BookInstance.objects.get(id='fd07e07b-0328-4f9c-bc2e-f7f6a1d815b6')
+        field_label = bookinstance._meta.get_field('imprint').verbose_name
+        self.assertEquals(field_label, 'imprint')
+
+    def test_imprint_max_length(self):
+        bookinstance = BookInstance.objects.get(id='fd07e07b-0328-4f9c-bc2e-f7f6a1d815b6')
+        max_length = bookinstance._meta.get_field('imprint').max_length
+        self.assertEquals(max_length, 200)

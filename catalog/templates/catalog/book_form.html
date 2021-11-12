@@ -3,7 +3,6 @@
 <body>
 {% extends "base_generic.html" %}
 {% block content %}
-{% if perms.catalog.can_mark_returned %}
 
 <form action="" method="post">
     {% csrf_token %}
@@ -13,9 +12,6 @@
     <input type="submit" value="Submit" />
 
 </form>
-{% else %}
-    <p>This page only for staff</p>
-{% endif %}
 {% endblock %}
 </body>
 </html>
