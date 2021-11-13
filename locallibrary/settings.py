@@ -28,7 +28,11 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'cg#p$g+j9tax!#a3cup@1$8obt2_+&
 # DEBUG = True
 DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
-ALLOWED_HOSTS = ['locallibrary.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['locallibrary.herokuapp.com',
+                 '127.0.0.1',
+                 'https://frozen-shore-46711.herokuapp.com/',
+                 'frozen-shore-46711.herokuapp.com',
+                 ]
 
 # For example:
 # ALLOWED_HOSTS = [
