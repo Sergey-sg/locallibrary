@@ -30,11 +30,6 @@ DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
 ALLOWED_HOSTS = ['frozen-shore-46711.herokuapp.com', '127.0.0.1']
 
-# For example:
-# ALLOWED_HOSTS = [
-#     'https://frozen-shore-46711.herokuapp.com/',
-#     'frozen-shore-46711.herokuapp.com',
-# ]
 
 # Application definition
 
